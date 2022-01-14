@@ -43,9 +43,15 @@ class Match:
 				if self.game.players[playerid].alive == True:
 					winner = playerid
 					#Set Match Winner
+
 					self.setWinner(winner)
 			# Draw game over menu
-			self.game.gameOverMenu = GameOverMenu(self.game, "Player " + str(winner), self.matchType)
+			if winner == 1:
+				self.game.gameOverMenu = GameOverMenu(self.game, "Player Red", self.matchType)
+			elif winner == 2:
+				self.game.gameOverMenu = GameOverMenu(self.game, "Player Green", self.matchType)
+			else:
+				self.game.gameOverMenu = GameOverMenu(self.game, "Player" + str(winner), self.matchType)
 			self.game.switchToGameOver()
 
 	def checkForTie(self,listplayers):
@@ -66,36 +72,18 @@ class Match:
 
 	def setWinner(self, winner):
 		#Add one to the winning players win tally per game mode.
-		#PVP
-		if self.matchType == 0:
-			if winner == 1:
-				self.game.PVP_Player1Wins = self.game.PVP_Player1Wins + 1
-			elif winner == 2:
-				self.game.PVP_Player2Wins = self.game.PVP_Player2Wins + 1
-		#PVE
-		elif self.matchType == 1:
-			if winner == 1:
-				self.game.PVE_PlayerWins = self.game.PVE_PlayerWins + 1
-			elif winner == 2:
-				self.game.PVE_BotWins = self.game.PVE_BotWins + 1
-		#EVE
-		elif self.matchType == 2:
 			if winner == 1:
 				self.game.EVE_Bot1Wins = self.game.EVE_Bot1Wins + 1
 			elif winner == 2:
 				self.game.EVE_Bot2Wins = self.game.EVE_Bot2Wins + 1
 
 
+
 	def setTie(self):
 		#If a tie has occured, end the game add 1 to the tie counter per game mode
 		#and draw the game over menu.
 		self.gameActive = False
-		if self.matchType == 0:
-			self.game.PVP_Tie = self.game.PVP_Tie + 1
-		elif self.matchType == 1:
-			self.game.PVE_Tie = self.game.PVE_Tie + 1
-		elif self.matchType == 2:
-			self.game.EVE_Tie = self.game.EVE_Tie + 1
+		self.game.EVE_Tie = self.game.EVE_Tie + 1
 		self.game.gameOverMenu = GameOverMenu(self.game, "No one", self.matchType)
 		self.game.switchToGameOver()
 

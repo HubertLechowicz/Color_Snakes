@@ -21,22 +21,11 @@ class GameOverMenu:
 		titleFont = pygame.font.SysFont(None, 30)
 		#Set text for game over menu
 		winText = str(self.winner) + " wins!"
-		stats1 = ""
-		stats2 = ""
-		stats3 = ""
-		
-		if self.matchType == 0:
-			stats1 = "Player 1 Wins: " + str(self.game.PVP_Player1Wins)
-			stats2 = "Player 2 Wins: " + str(self.game.PVP_Player2Wins)
-			stats3 = "Ties: " + str(self.game.PVP_Tie)
-		elif self.matchType == 1:
-			stats1 = "Player Wins: " + str(self.game.PVE_PlayerWins)
-			stats2 = "Bot Wins: " + str(self.game.PVE_BotWins)
-			stats3 = "Ties: " + str (self.game.PVE_Tie)
-		elif self.matchType == 2:
-			stats1 = "Bot 1 Wins: " + str(self.game.EVE_Bot1Wins)
-			stats2 = "Bot 2 Wins: " + str(self.game.EVE_Bot2Wins)
-			stats3 = "Ties: " + str (self.game.EVE_Tie)
+
+
+		stats1 = "Red Wins: " + str(self.game.EVE_Bot1Wins)
+		stats2 = "Green Wins: " + str(self.game.EVE_Bot2Wins)
+		stats3 = "Ties: " + str (self.game.EVE_Tie)
 		
 		#Build titles
 		title = titleFont.render(winText, 1, (255, 255, 255))

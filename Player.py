@@ -148,38 +148,6 @@ class Player:
 
 
 
-class Human(Player):
-	def __init__(self, gameObj, colour, playerid, x, y, initialDirection, controls):
-		super(Human, self).__init__(gameObj, colour, playerid, x, y, initialDirection)
-
-		#controls is a 4-tuple, up, right, down, left
-		self.ctl_up = controls[0]
-		self.ctl_right = controls[1]
-		self.ctl_down = controls[2]
-		self.ctl_left = controls[3]
-
-	def event(self, event):
-		if event.type == pygame.KEYDOWN and len(self.directionQ) < self.maxDirectionQLen:
-			if event.key == self.ctl_up:
-				self.directionQ.append(Player.DIRECT_UP)
-			elif event.key == self.ctl_right:
-				self.directionQ.append(Player.DIRECT_RIGHT)
-			elif event.key == self.ctl_down:
-				self.directionQ.append(Player.DIRECT_DOWN)
-			elif event.key == self.ctl_left:
-				self.directionQ.append(Player.DIRECT_LEFT)
-
-	def tick(self): #perform moving and collision calculations here
-
-		while self.directionQ and self.wouldCollideSelf(self.directionQ[0]):
-			self.directionQ.pop(0)
-		if self.directionQ:
-			self.direction = self.directionQ.pop(0)
-		while self.directionQ and self.directionQ[0] == self.direction:
-			self.directionQ.pop(0)
-
-		self.prevPos['x'] = self.posX
-		self.prevPos['y'] = self.posY
 
 
 class Computer(Player):

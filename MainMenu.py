@@ -6,7 +6,7 @@ class MainMenu:
 
 		self.font = pygame.font.SysFont(None, 34)
 
-		self.menuList = ['Player vs Player', 'Player vs Computer', 'Computer vs Computer']
+		self.menuList = [' 1 Red vs 1 Green', '1 Red vs 2 Green', '2 Red vs 2 Green']
 		self.items = [] #text objects, a list of lists: [text, bitmap, (width, height), (posx, posy)]
 		self.activeItem = 0
 		self.activeColour = (30, 140, 255)
@@ -54,7 +54,7 @@ class MainMenu:
 	def draw(self):
 		#Build title text
 		titleFont = pygame.font.SysFont(None, 80)
-		title = titleFont.render("PyTron", 1, (255, 255, 255))
+		title = titleFont.render("Color Snakes", 1, (255, 255, 255))
 		title_width = title.get_rect().width
 		#draw title
 		self.game.screen.blit(title, ((self.game.scr_x / 2) - (title_width / 2), 80))
